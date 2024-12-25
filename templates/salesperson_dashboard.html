@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}Salesperson Dashboard{% endblock %}
+{% block content %}
+<h1>Salesperson Dashboard</h1>
+
+<!-- Add New Product Form -->
+<h2>Add New Product</h2>
+<form method="post">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.name.label }}
+        {{ form.name(size=32) }}
+    </div>
+    <div>
+        {{ form.price.label }}
+        {{ form.price() }}
+    </div>
+    <div>
+        {{ form.description.label }}
+        {{ form.description(rows=5) }}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+
+<!-- List of Existing Products -->
+<h2>Existing Products</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>${{ product.price }}</td>
+            <td>{{ product.description }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
